@@ -61,3 +61,4 @@ This project is being built in sequential phases to compare, contrast, and maste
 │   ├── migrations/         # Sequelize & SQLAlchemy migration files
 │   └── seeds/              # Signature Burger recipes & dummy data
 └── 🧪 shared/              # Common Types, Constants, and Utils
+```
