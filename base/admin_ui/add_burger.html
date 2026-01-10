@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>admin_ui</title>
+        <link rel="stylesheet" href="src/pages/addBurger/addBurger.css" />
+    </head>
+    <body>
+        <div id="app">
+            <div class="wrapper">
+                <aside class="side-nav">
+                    <section><span class="logo">Burger Hub</span></section>
+                    <section class="nav">
+                        <p class="nav--header">Menu</p>
+                        <ul class="nav--list">
+                            <li class="nav--item">
+                                <a href="./index.html" class="nav--link">
+                                    <img
+                                        src="./src/assets/dashboard_icon.svg"
+                                        alt="dahsboard icon"
+                                        class="nav--img"
+                                    />
+                                    <span class="nav--text">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav--item">
+                                <a href="./add_burger.html" class="nav--link">
+                                    <img
+                                        src="./src/assets/create_icon.svg"
+                                        alt="add icon"
+                                        class="nav--img"
+                                    />
+                                    <span class="nav--text">Add Burger</span>
+                                </a>
+                            </li>
+                            <li class="nav--item">
+                                <a href="#" class="nav--link"
+                                    ><img
+                                        src="./src/assets/list_icon.svg"
+                                        alt="list icon"
+                                        class="nav--img"
+                                    /><span class="nav--text"
+                                        >Burger List</span
+                                    ></a
+                                >
+                            </li>
+                        </ul>
+                    </section>
+                </aside>
+                <div class="wrapper-main">
+                    <main>
+                        <h1>Add Burger</h1>
+                        <section class="add-burger-form">
+                            <form action="#" class="form">
+                                <div class="input-group">
+                                    <label for="burger_id">Burger ID</label>
+                                    <input
+                                        type="text"
+                                        class="input-box"
+                                        id="burger_id"
+                                        placeholder="Burger ID"
+                                    />
+                                </div>
+                                <div class="input-group">
+                                    <label for="burger_id">Burger Title</label>
+                                    <input
+                                        type="text"
+                                        class="input-box"
+                                        id="burger_id"
+                                        placeholder="Title"
+                                    />
+                                </div>
+                                <div class="input-group">
+                                    <label for="description">Description</label>
+                                    <textarea
+                                        name="description"
+                                        id="description"
+                                        rows="6"
+                                        placeholder="Write the burger description here"
+                                    ></textarea>
+                                </div>
+                                <div class="input-group">
+                                    <label for="category">Category</label>
+                                    <select name="category" id="category">
+                                        <option value="beef">BEEF</option>
+                                        <option value="chiken">Chiken</option>
+                                        <option value="vegan">VEGAN</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="price">Price</label>
+                                    <input
+                                        type="number"
+                                        id="price"
+                                        class="input-box"
+                                    />
+                                </div>
+                                <div class="input-group">
+                                    <label for="ingredients">Ingredients</label>
+                                    <input
+                                        type="text"
+                                        class="input-box"
+                                        id="ingredients"
+                                    />
+                                </div>
+                                <div class="input-group">
+                                    <label for="image"
+                                        >Burger Cover Image</label
+                                    >
+                                    <input
+                                        type="image"
+                                        src="./src/assets/add_image_icon.svg"
+                                        alt="add burger image"
+                                        class="input-image"
+                                    />
+                                </div>
+                                <div class="input-group">
+                                    <label for="image">Burger Image</label>
+                                    <input
+                                        type="image"
+                                        src="./src/assets/add_image_icon.svg"
+                                        alt="add burger image"
+                                        class="input-image"
+                                    />
+                                </div>
+                                <div class="input-group">
+                                    <label for="image">Burger Image</label>
+                                    <input
+                                        type="image"
+                                        src="./src/assets/add_image_icon.svg"
+                                        alt="add burger image"
+                                        class="input-image"
+                                    />
+                                </div>
+                                <div class="input-group">
+                                    <label for="tag">Tags</label>
+                                    <input
+                                        type="text"
+                                        class="input-box"
+                                        id="tag"
+                                    />
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    class="btn btn__add-burger"
+                                >
+                                    Save Details
+                                </button>
+                            </form>
+                        </section>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <script src="src/pages/dashboard/dashboard.js"></script>
+    </body>
+</html>

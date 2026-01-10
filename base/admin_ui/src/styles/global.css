@@ -1,0 +1,18 @@
+:root {
+    --primary-color: #e16349;
+    --primary-hover-color: #f26e53;
+    --primary-gray: #f3d7d0;
+    --primary-light-gray: #f7ebeb;
+    --primary-bg: #f8f8f8;
+}
+
+.wrapper {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 1480px;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 600;
+}

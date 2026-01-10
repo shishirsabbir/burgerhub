@@ -1,0 +1,33 @@
+@import "../../styles/global.css";
+@import "../../styles/reset.css";
+@import "../../styles/utilities.css";
+@import "../../styles/layout.css";
+@import "../../components/sidenav/sidenav.css";
+
+/*add burger form*/
+.form {
+    width: 100%;
+    max-width: 600px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-box {
+    display: block;
+    padding: 8px 20px;
+    font-size: 16px;
+    border-radius: 30px;
+    outline: none;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-image {
+    width: 80px;
+}
