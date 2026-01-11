@@ -3,6 +3,7 @@
 @import "../../styles/utilities.css";
 @import "../../styles/layout.css";
 @import "../../components/sidenav/sidenav.css";
+@import "../../components/header/header.css";
 
 /*add burger form*/
 .form {

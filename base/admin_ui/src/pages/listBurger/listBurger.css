@@ -1,0 +1,51 @@
+@import "../../styles/global.css";
+@import "../../styles/reset.css";
+@import "../../styles/utilities.css";
+@import "../../styles/layout.css";
+@import "../../components/sidenav/sidenav.css";
+@import "../../components/header/header.css";
+
+/*Burger Table*/
+.burger-table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 30px;
+}
+
+.burger-table__head {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.burger-table__cell {
+    border: 1px solid rgb(160, 160, 160);
+    padding: 8px 10px;
+    font-size: 18px;
+}
+
+.burger-table__cell span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.burger-info {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+}
+
+.burger-info .burger-info__img {
+    width: 48px;
+}
+
+.burger-info .burger-info__name {
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.burger-table__cell--info span {
+    display: block;
+}

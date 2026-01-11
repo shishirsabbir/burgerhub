@@ -1,8 +1,6 @@
 .btn {
-    font-size: 18px;
     border-radius: 50px;
     border: transparent;
-    padding: 12px 20px;
     cursor: pointer;
     transition: all 250ms ease-in-out;
     width: fit-content;
@@ -13,7 +11,17 @@
 }
 
 .btn__add-burger {
+    font-size: 18px;
     background-color: var(--primary-color);
     color: white;
     margin-inline: auto;
+    padding: 12px 20px;
+}
+
+.btn--details {
+    font-size: 14px;
+    background-color: rgb(253, 181, 0);
+    color: white;
+    font-weight: 600;
+    padding: 8px 20px;
 }

@@ -2,19 +2,112 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Burger List</title>
+        <title>admin_ui</title>
+        <link rel="stylesheet" href="src/pages/listBurger/listBurger.css" />
     </head>
     <body>
-        <div class="burger_container">
-            <div id="burger_tile" class="burger_tile">
-                <h4 class="burger_title">Burger Title</h4>
-                <p class="burger_description">Burger Description</p>
-                <p class="burger_price">Price</p>
+        <div id="app">
+            <div class="wrapper">
+                <aside class="side-nav">
+                    <section><span class="logo">Burger Hub</span></section>
+                    <section class="nav">
+                        <p class="nav--header">Menu</p>
+                        <ul class="nav--list">
+                            <li class="nav--item">
+                                <a href="./index.html" class="nav--link">
+                                    <img
+                                        src="./src/assets/dashboard_icon.svg"
+                                        alt="dahsboard icon"
+                                        class="nav--img"
+                                    />
+                                    <span class="nav--text">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav--item">
+                                <a href="./add_burger.html" class="nav--link">
+                                    <img
+                                        src="./src/assets/create_icon.svg"
+                                        alt="add icon"
+                                        class="nav--img"
+                                    />
+                                    <span class="nav--text">Add Burger</span>
+                                </a>
+                            </li>
+                            <li class="nav--item">
+                                <a href="./list_burger.html" class="nav--link"
+                                    ><img
+                                        src="./src/assets/list_icon.svg"
+                                        alt="list icon"
+                                        class="nav--img"
+                                    /><span class="nav--text"
+                                        >Burger List</span
+                                    ></a
+                                >
+                            </li>
+                        </ul>
+                    </section>
+                </aside>
+                <div class="wrapper-main">
+                    <header class="header">
+                        <h1 class="title">Burger List</h1>
+                        <div class="user">
+                            <span class="user--image"
+                                ><img
+                                    src="./src/assets/user_image.jpg"
+                                    alt="user image"
+                            /></span>
+                            <span class="user--details"
+                                ><h4 class="user--name">User Name</h4>
+                                <p class="user--email">
+                                    username@gmail.com
+                                </p></span
+                            >
+                        </div>
+                    </header>
+                    <main class="main">
+                        <section class="burger-list">
+                            <table class="burger-table">
+                                <thead class="burger-table__head">
+                                    <tr class="burger-table__row">
+                                        <th
+                                            class="burger-table__cell burger-table__cell--header"
+                                        >
+                                            Burger Name
+                                        </th>
+                                        <th
+                                            class="burger-table__cell burger-table__cell--header"
+                                        >
+                                            Category
+                                        </th>
+                                        <th
+                                            class="burger-table__cell burger-table__cell--header"
+                                        >
+                                            Ingredients
+                                        </th>
+                                        <th
+                                            class="burger-table__cell burger-table__cell--header"
+                                        >
+                                            Price
+                                        </th>
+                                        <th
+                                            class="burger-table__cell burger-table__cell--header"
+                                        >
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody
+                                    class="burger-table__body"
+                                    id="burger-table-body"
+                                ></tbody>
+                            </table>
+                        </section>
+                    </main>
+                </div>
             </div>
         </div>
-
-        <!-- adding scripts -->
-        <script src="./src/pages/listBurger/listBurger.js"></script>
+        <script src="src/pages/listBurger/listBurger.js"></script>
     </body>
 </html>
