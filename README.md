@@ -16,7 +16,7 @@ Instead of just building one app, this project explores how the same business lo
 ## 🛤️ Evolution Roadmap (The Learning Path)
 This project is organized into five revolutionary stages, each contained in its own specialized directory:
 
-### 🏛️ Phase 1: `base` (The Foundation)
+### 🏛️ ~~ Phase 1: `base` (The Foundation) ~~ **Disconitued**
 * **Stack:** `Node.js` + `EJS` + `Sequelize` + `PostgreSQL`
 * **Focus:** Server-Side Rendering (SSR), relational database modeling, and session-based authentication.
 * **Goal:** Build the core "Burger Engine" using classic MVC patterns. All logic and views are served from a single monolith.
