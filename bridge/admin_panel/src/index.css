@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+
+/* container styles */
+#root {
+    width: 100dvw;
+    height: 100dvh;
+    padding: 32px;
+    display: flex;
+    gap: 16px;
+}
