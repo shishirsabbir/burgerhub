@@ -16,13 +16,13 @@ Instead of just building one app, this project explores how the same business lo
 ## 🛤️ Evolution Roadmap (The Learning Path)
 This project is organized into five revolutionary stages, each contained in its own specialized directory:
 
-### 🏛️ Phase 1: `base` (The Foundation)
+### 🏛️ ~~Phase 1: `base` (The Foundation)~~ **Disconitued**
 * **Stack:** `Node.js` + `EJS` + `Sequelize` + `PostgreSQL`
 * **Focus:** Server-Side Rendering (SSR), relational database modeling, and session-based authentication.
 * **Goal:** Build the core "Burger Engine" using classic MVC patterns. All logic and views are served from a single monolith.
 
 ### 🌉 Phase 2: `bridge` (The Connection)
-* **Stack:** `Node.js` (Express) + `React` (Vite) + `Tailwind CSS`
+* **Stack:** `Node.js` (Express) with `Sequelize` + `React` (Vite) for Admin Panel + `NextJS 16` for Website + `Tailwind CSS`
 * **Focus:** Decoupling the frontend. Building a dedicated **Admin Dashboard** for menu management, order tracking, and delivery logistics.
 * **Goal:** Master RESTful API design and complex state management in React.
 
@@ -32,7 +32,7 @@ This project is organized into five revolutionary stages, each contained in its 
 * **Goal:** Performance benchmarking against the Node.js implementation. High-speed "searing" of data.
 
 ### 🏔️ Phase 4: `apex` (The Peak)
-* **Stack:** `Next.js 14` (App Router) + `Mongoose` (`MongoDB`) + `Sequelize`
+* **Stack:** `Next.js 16` (App Router) + `Mongoose` (`MongoDB`) + `Sequelize`
 * **Focus:** Hybrid database approach (SQL for transactions, NoSQL for flexible menu/recipe storage). Leveraging Server Components and Edge Functions.
 * **Goal:** Build a production-ready, SEO-optimized consumer storefront at the peak of modern web tech.
 
