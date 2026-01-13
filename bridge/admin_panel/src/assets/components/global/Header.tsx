@@ -2,7 +2,7 @@
 
 export default function Header() {
     return (
-        <header className="sticky top-0 flex h-full w-full items-center justify-between bg-orange-200 px-8">
+        <header className="sticky top-0 flex h-full w-full items-center justify-between bg-orange-50 px-8">
             {/* page title */}
             <div className="flex items-center justify-center">
                 <h1 className="text-3xl font-semibold">Dashboard</h1>

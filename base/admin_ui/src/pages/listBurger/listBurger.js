@@ -7,7 +7,7 @@ const getAllBurgers = async () => {
         const res = await fetch("http://127.0.0.1:8000/api/v1/burgers");
         // console.log(res);
         const data = await res.json();
-        console.log(data.data.burgers[0].images[0]);
+        // console.log(data.data.burgers[0]);
         return data.data.burgers;
     } catch (err) {
         console.log("There is a error");

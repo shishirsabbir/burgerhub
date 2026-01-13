@@ -41,7 +41,10 @@ function TableRow({
                     {isHeader ? (
                         <span>Action</span>
                     ) : (
-                        <Link to="#" className="rounded-full bg-orange-400 px-2.5 py-1 text-base text-white">
+                        <Link
+                            to="#"
+                            className="rounded-full bg-orange-400 px-2.5 py-1 text-base text-white transition-all duration-200 ease-in-out hover:bg-orange-500"
+                        >
                             View
                         </Link>
                     )}
@@ -68,7 +71,7 @@ export default function BurgerTable() {
                 return (
                     <TableRow
                         key={i}
-                        bgColor={`${(i + 1) % 2 === 0 ? 'bg-gray-50' : 'bg-gray-100'}`}
+                        bgColor={`${(i + 1) % 2 === 0 ? 'bg-rose-50/90' : 'bg-rose-100/10'}`}
                         isHeader={false}
                         burgerData={{ title: 'Burger Name', category: 'Beef', price: 4.99 }}
                     />

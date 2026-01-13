@@ -12,7 +12,7 @@ function NavItem({ Icon, urlTo, navTitle }: { Icon: IconType; urlTo: string; nav
     return (
         <NavLink
             to={urlTo}
-            className="flex w-full items-center justify-start gap-2 rounded-full bg-orange-50 px-3.5 py-1.5 shadow-sm hover:bg-amber-200"
+            className="flex w-full items-center justify-start gap-2 rounded-full bg-orange-50 px-3.5 py-1.5 shadow-sm transition-all duration-200 ease-in-out hover:bg-amber-200"
         >
             <span>
                 <Icon className="size-5" />
