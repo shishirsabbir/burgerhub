@@ -1,6 +1,6 @@
 // imports
+import { Outlet } from 'react-router';
 import SideNav from './assets/components/global/SideNav';
-import Dashboard from './assets/pages/Dashboard';
 
 function App() {
     return (
@@ -12,7 +12,7 @@ function App() {
 
             {/* content area */}
             <div className="h-full w-[80%] rounded-2xl bg-white shadow-lg max-[1200px]:w-full">
-                <Dashboard />
+                <Outlet />
             </div>
         </>
     );

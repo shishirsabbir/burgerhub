@@ -25,7 +25,7 @@ function Card({
     mainIconColor: string;
 }) {
     return (
-        <div className={`${classString} flex flex-1 flex-col gap-3 rounded-2xl p-7 text-white max-[1412px]:p-4`}>
+        <div className={`${classString} flex flex-col gap-3 rounded-2xl p-6 text-white max-[1412px]:p-4 max-xl:flex-1`}>
             <div className="flex items-center justify-between gap-4">
                 <span>
                     <h4 className="text-xl leading-tight max-[1412px]:text-lg">{mainTitle}</h4>
