@@ -55,7 +55,7 @@ export default function StatCards() {
             <Card
                 MainIcon={PiHamburgerFill}
                 SubIcon={BsGraphUpArrow}
-                classString="bg-gradient-to-tr from-orange-500 via-orange-400 to-yellow-100"
+                classString="bg-gradient-to-tr from-orange-500 via-orange-400 to-orange-100"
                 mainTitle="Total Burgers"
                 statNumber={6}
                 subText="Increased from last month"

@@ -1,6 +1,7 @@
 // imports
 import { Link } from 'react-router';
 import { FaHamburger } from 'react-icons/fa';
+import type { BurgerData } from '../../../types/burger';
 
 // type interface
 export interface TableDataBurger {
@@ -28,10 +29,10 @@ function TableRow({
                         <FaHamburger className="size-6" />
                     </span>
                 )}
-                <span className={`${isHeader ? 'w-full text-center' : ''}`}>{burgerData.title}</span>
+                <span className={`${isHeader ? 'w-full text-center' : ''} capitalize`}>{burgerData.title}</span>
             </div>
             <div className="flex w-[20%] items-center justify-center">
-                <span className="">{burgerData.category}</span>
+                <span className={`${isHeader ? '' : 'uppercase'}`}>{burgerData.category}</span>
             </div>
             <div className="flex w-[15%] items-center justify-center">
                 <span>{burgerData.price}</span>
@@ -42,7 +43,7 @@ function TableRow({
                         <span>Action</span>
                     ) : (
                         <Link
-                            to="#"
+                            to={`/burgers/${burgerData.id}`}
                             className="rounded-full bg-orange-400 px-2.5 py-1 text-base text-white transition-all duration-200 ease-in-out hover:bg-orange-500"
                         >
                             View
@@ -54,9 +55,7 @@ function TableRow({
     );
 }
 
-export default function BurgerTable() {
-    const dummyRows = Array(20).fill(0);
-
+export default function BurgerTable({ burgerDataList }: { burgerDataList: BurgerData[] }) {
     return (
         <div className="w-full overflow-hidden rounded-b-2xl shadow-md">
             {/* header */}
@@ -67,16 +66,30 @@ export default function BurgerTable() {
             />
 
             {/* rows */}
-            {dummyRows.map((_, i) => {
-                return (
-                    <TableRow
-                        key={i}
-                        bgColor={`${(i + 1) % 2 === 0 ? 'bg-rose-50/90' : 'bg-rose-100/10'}`}
-                        isHeader={false}
-                        burgerData={{ title: 'Burger Name', category: 'Beef', price: 4.99 }}
-                    />
-                );
-            })}
+            {burgerDataList?.length ? (
+                <>
+                    {burgerDataList.map((burgerData, i) => {
+                        return (
+                            <TableRow
+                                key={burgerData.id}
+                                bgColor={`${(i + 1) % 2 === 0 ? 'bg-rose-50/90' : 'bg-rose-100/10'}`}
+                                isHeader={false}
+                                burgerData={{
+                                    id: burgerData.id,
+                                    title: burgerData.title,
+                                    category: burgerData.category,
+                                    price: burgerData.price,
+                                }}
+                            />
+                        );
+                    })}
+                </>
+            ) : (
+                // empty row
+                <div className="flex items-center justify-center px-4 py-6">
+                    <p className="w-full text-center">No Burgers Found 🤔</p>
+                </div>
+            )}
         </div>
     );
 }

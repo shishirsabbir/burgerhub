@@ -4,7 +4,7 @@ import Header from './Header';
 import { useState } from 'react';
 
 export default function PageLayout() {
-    const [pageTitle, setPageTitle] = useState<string>('Admin Panel');
+    const [pageTitle, setPageTitle] = useState<string>('BurgerHub | Admin Panel');
 
     return (
         <div className="flex h-screen w-full flex-col overflow-hidden rounded-2xl pb-20">

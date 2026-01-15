@@ -34,8 +34,8 @@ export default function SideNav() {
             <div className="mt-10 w-full">
                 <h4 className="text-xs uppercase">Menu</h4>
                 <nav className="mt-2 flex w-full flex-col items-start gap-2">
-                    <NavItem Icon={MdOutlineDashboard} urlTo="#" navTitle="Dashbaord" />
-                    <NavItem Icon={PiHamburgerBold} urlTo="#" navTitle="Burger List" />
+                    <NavItem Icon={MdOutlineDashboard} urlTo="/" navTitle="Dashbaord" />
+                    <NavItem Icon={PiHamburgerBold} urlTo="/burgers" navTitle="Burger List" />
                     <NavItem Icon={MdOutlineDeliveryDining} urlTo="#" navTitle="Orders" />
                     <NavItem Icon={FaUsers} urlTo="#" navTitle="Users" />
                 </nav>

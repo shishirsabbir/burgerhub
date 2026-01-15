@@ -1,6 +1,14 @@
 // imports
-import { useState } from 'react';
+import { useState, type Dispatch, type SetStateAction, type KeyboardEvent } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
+
+// tag selector props
+interface TagSelectorProps {
+    inputTitle: string;
+    inputName: string;
+    dataList: string[];
+    setDataList: Dispatch<SetStateAction<string[]>>;
+}
 
 // local components
 function Tag({ item, handleDelete }: { item: string; handleDelete: (item: string) => void }) {
@@ -17,21 +25,34 @@ function Tag({ item, handleDelete }: { item: string; handleDelete: (item: string
     );
 }
 
-export default function TagSelector({ inputTitle, inputName }: { inputTitle: string; inputName: string }) {
-    const [dataList, setDataList] = useState<string[]>([
-        'mushroom',
-        'tomato',
-        'cheese',
-        'burger',
-        'beef',
-        'onion',
-        'garlic',
-        'ginger',
-        'sauce',
-    ]);
+export default function TagSelector({ inputTitle, inputName, dataList, setDataList }: TagSelectorProps) {
+    const [inputValue, setInputValue] = useState('');
 
     const handleDelete = (item: string): void => {
         setDataList((prev) => prev.filter((i) => i !== item));
+    };
+
+    // logic to handle keypresses
+    const handleKeyUp = (e: KeyboardEvent<HTMLInputElement>) => {
+        // check for enter or comma
+        if (e.key === 'Enter' || e.key === ',') {
+            e.preventDefault();
+
+            // clean the input, remove the trailing comma if there is any
+            const value = inputValue
+                .toLowerCase()
+                .replace(/^[^a-z]+|[^a-z]+$/g, '') // Clean boundaries
+                .replace(/\s+/g, ' ') // Collapse multiple spaces
+                .trim();
+
+            // prevents empty tags or duplicates
+            if (value && !dataList.includes(value)) {
+                setDataList((prev) => [...prev, value]);
+                setInputValue(''); // clear the input value
+            } else {
+                setInputValue(''); // just clear the duplicates or empty
+            }
+        }
     };
 
     return (
@@ -54,9 +75,20 @@ export default function TagSelector({ inputTitle, inputName }: { inputTitle: str
                         type="text"
                         name={inputName}
                         id={inputName}
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value.replace(/[^a-zA-Z\s]/g, ''))}
+                        onKeyUp={handleKeyUp}
+                        placeholder={dataList.length === 0 ? 'Add Items...' : ''}
                         className="max-w-26 border-b px-1 py-0.5 outline-none focus:border-orange-400"
                     />
                 </div>
+            </div>
+            <div className="mt-1 w-full pl-3">
+                <span className="text-sm text-gray-500">
+                    Add <span className="font-semibold">{inputTitle}</span> by Pressing{' '}
+                    <kbd className="mx-1 rounded-sm border border-gray-300 bg-gray-100 px-1 py-0.5">Enter</kbd> key or{' '}
+                    <kbd className="mx-1 rounded-sm border border-gray-300 bg-gray-100 px-1 py-0.5">Comma</kbd> key
+                </span>
             </div>
 
             {/* <input

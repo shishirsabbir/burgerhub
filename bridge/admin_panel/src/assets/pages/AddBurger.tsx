@@ -1,7 +1,7 @@
 // imports
 import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router';
-import type { FileState } from '../../types/burger';
+import { type BurgerCategory, type FileState } from '../../types/burger';
 import CoverUpload from '../components/add_burger/CoverUpload';
 import ImageUpload from '../components/add_burger/ImageUpload';
 import TagSelector from '../components/add_burger/TagSelector';
@@ -16,7 +16,7 @@ export default function AddBurgers() {
         file: null,
         preview: '',
     });
-    const [imgTwo, setImgimgTwo] = useState<FileState>({
+    const [imgTwo, setImgTwo] = useState<FileState>({
         file: null,
         preview: '',
     });
@@ -25,10 +25,126 @@ export default function AddBurgers() {
         preview: '',
     });
 
-    //
+    // reset key
+    const [resetKey, setResetKey] = useState(0);
+
+    // individual burger data as state
+    const [title, setTitle] = useState<string>('');
+    const [description, setDescription] = useState<string>('');
+    const [price, setPrice] = useState<string>('');
+    const [category, setCategory] = useState<BurgerCategory | ''>('');
+    const [ingredients, setIngredients] = useState<string[]>([]);
+    const [tags, setTags] = useState<string[]>([]);
+
+    // loading state
+    const [loading, setLoading] = useState<boolean>(false);
+
+    // reset form
+    const resetForm = () => {
+        // 1. Revoke object URLs to free up browser memory
+        // This prevents memory leaks from the blob: URLs created for previews
+        [cover, imgOne, imgTwo, imgThree].forEach((img) => {
+            if (img.preview && img.preview.startsWith('blob:')) {
+                URL.revokeObjectURL(img.preview);
+            }
+        });
+
+        // Reset Image States
+        const emptyFileState: FileState = { file: null, preview: '' };
+
+        setCover(emptyFileState);
+        setImgOne(emptyFileState);
+        setImgTwo(emptyFileState); // Corrected from setImgimgTwo typo
+        setImgThree(emptyFileState);
+
+        // 3. Reset Basic Text & Select Inputs
+        setTitle('');
+        setPrice('');
+        setCategory(''); // Resets to the <Select Category> disabled option
+        setDescription('');
+
+        // 4. Reset Array/List States (Ingredients & Tags)
+        setIngredients([]);
+        setTags([]);
+
+        // update reset key
+        setResetKey((prev) => prev + 1);
+
+        // 5. UX: Scroll back to the top of the form
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // handle save function
+    const handleSaveBurger = async () => {
+        // 1. Validation check
+        if (!title || !price || !category || !cover.file) {
+            alert('Please enter all the fields and select a cover image');
+            return;
+        }
+
+        // set loading
+        setLoading(true);
+
+        try {
+            const formData = new FormData();
+
+            // append basic text fields
+            formData.append('title', title);
+            formData.append('description', description);
+            formData.append('category', category);
+            formData.append('price', price);
+
+            // arrays (stringified for transport)
+            formData.append('ingredients', JSON.stringify(ingredients));
+            formData.append('tags', JSON.stringify(tags));
+
+            // files
+            if (cover.file) formData.append('coverImage', cover.file);
+
+            // gallery (images)
+            [imgOne, imgTwo, imgThree].forEach((img) => {
+                if (img.file) formData.append('images', img.file);
+            });
+
+            // send the formdata
+            const response = await fetch('http://localhost:8000/api/v1/burgers', { method: 'POST', body: formData });
+
+            // Check if there is content to parse
+            const contentType = response.headers.get('content-type');
+            let result = undefined;
+
+            if (contentType && contentType.includes('application/json')) {
+                result = await response.json();
+            }
+
+            if (response.ok) {
+                alert('Burger Saved Successfully!');
+                // reset form
+                resetForm();
+            } else {
+                alert(`Error! ${result?.message || 'Could not save the Burger!'}`);
+            }
+        } catch (err) {
+            console.error('Burger Save Error', err);
+            alert('Submission Error! Burger could not be saved');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // handle submit
 
     useEffect(() => {
+        // update ui title
         setPageTitle('Add Burger');
+
+        // update browser tab
+        document.title = 'Add Burger | BurgerHub';
+
+        // clean up
+        return () => {
+            document.title = 'BurgerHub';
+        };
     }, [setPageTitle]);
 
     return (
@@ -54,18 +170,30 @@ export default function AddBurgers() {
                                 <div className="w-full grow p-4">
                                     <div className="flex h-full w-full items-center justify-between gap-6">
                                         {/* cover image */}
-                                        <CoverUpload cover={cover} setCover={setCover} />
+                                        <CoverUpload key={`cover_img_${resetKey}`} cover={cover} setCover={setCover} />
 
                                         {/* images */}
                                         <div className="grid h-full flex-1 grid-cols-2 grid-rows-2 gap-2">
                                             {/* img 1 */}
-                                            <ImageUpload image={imgOne} setImage={setImgOne} />
+                                            <ImageUpload
+                                                key={`img_1_${resetKey}`}
+                                                image={imgOne}
+                                                setImage={setImgOne}
+                                            />
 
                                             {/* img 2 */}
-                                            <ImageUpload image={imgTwo} setImage={setImgimgTwo} />
+                                            <ImageUpload
+                                                key={`img_2_${resetKey}`}
+                                                image={imgTwo}
+                                                setImage={setImgTwo}
+                                            />
 
                                             {/* img 3 */}
-                                            <ImageUpload image={imgThree} setImage={setImgThree} />
+                                            <ImageUpload
+                                                key={`img_3_${resetKey}`}
+                                                image={imgThree}
+                                                setImage={setImgThree}
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -81,6 +209,8 @@ export default function AddBurgers() {
                                         type="text"
                                         name="title"
                                         id="title"
+                                        value={title}
+                                        onChange={(e) => setTitle(e.target.value)}
                                         placeholder="Enter burger name"
                                         className="w-full rounded-full border border-gray-400 px-5 py-2 transition-all duration-100 ease-in-out outline-none focus:border-orange-400"
                                     />
@@ -95,6 +225,8 @@ export default function AddBurgers() {
                                         min={0.0}
                                         name="price"
                                         id="price"
+                                        value={price}
+                                        onChange={(e) => setPrice(e.target.value)}
                                         placeholder="Enter burgeer price eg. 14.99"
                                         className="bborder w-[60%] [appearance:textfield] rounded-full border border-gray-400 px-5 py-2 transition-all duration-100 ease-in-out outline-none focus:border-orange-400 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                                     />
@@ -106,24 +238,18 @@ export default function AddBurgers() {
                                     <select
                                         name="category"
                                         id="category"
+                                        value={category}
+                                        onChange={(e) => setCategory(e.target.value as BurgerCategory)}
                                         className="category-select w-[80%] cursor-pointer rounded-full border border-gray-400 px-5 py-2.5 transition-all duration-100 ease-in-out outline-none focus:border-orange-400"
                                     >
                                         {/* as this a title design it separately @hugu */}
-                                        <option selected value="" className="">
+                                        <option selected value="" disabled>
                                             &lt; Select Category &gt;
                                         </option>
-                                        <option selected value="beef">
-                                            Beef
-                                        </option>
-                                        <option selected value="chicken">
-                                            Chicken
-                                        </option>
-                                        <option selected value="vegetable">
-                                            Vegetable
-                                        </option>
-                                        <option selected value="fish">
-                                            Fish
-                                        </option>
+                                        <option value="beef">Beef</option>
+                                        <option value="chicken">Chicken</option>
+                                        <option value="vegetable">Vegetable</option>
+                                        <option value="fish">Fish</option>
                                     </select>
                                 </div>
                             </div>
@@ -138,6 +264,8 @@ export default function AddBurgers() {
                                 name="description"
                                 id="description"
                                 rows={4}
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
                                 placeholder="Enter your burger description"
                                 className="w-full rounded-2xl border border-gray-400 px-4 py-2.5 transition-all duration-100 ease-in-out outline-none focus:border-orange-400"
                             ></textarea>
@@ -146,10 +274,15 @@ export default function AddBurgers() {
                         {/* burger ingredients & burger tags */}
                         <div className="mt-8 flex items-center justify-between gap-10 px-2">
                             {/* ingredients */}
-                            <TagSelector inputTitle="Ingredients" inputName="ingredient" />
+                            <TagSelector
+                                inputTitle="Ingredients"
+                                inputName="ingredient"
+                                dataList={ingredients}
+                                setDataList={setIngredients}
+                            />
 
                             {/* tags */}
-                            <TagSelector inputTitle="Tags" inputName="tags" />
+                            <TagSelector inputTitle="Tags" inputName="tags" dataList={tags} setDataList={setTags} />
                         </div>
 
                         {/* cancel and submit button */}
@@ -157,7 +290,7 @@ export default function AddBurgers() {
                             <div>
                                 <button
                                     type="button"
-                                    className="text -translate-y-1 cursor-pointer rounded-full bg-red-400 px-6 py-2 text-xl font-semibold text-white shadow-xl transition-all duration-200 ease-in-out select-none hover:translate-0 hover:bg-red-500 hover:shadow-sm"
+                                    className="text cursor-pointer rounded-full bg-red-400 px-6 py-2 text-xl font-semibold text-white shadow-xl transition-all duration-150 ease-out select-none hover:-translate-y-1 hover:bg-red-500 hover:shadow-sm active:translate-0"
                                 >
                                     Cancel
                                 </button>
@@ -165,7 +298,13 @@ export default function AddBurgers() {
                             <div>
                                 <button
                                     type="button"
-                                    className="text -translate-y-1 cursor-pointer rounded-full bg-blue-400 px-6 py-2 text-xl font-semibold text-white shadow-xl transition-all duration-200 ease-in-out select-none hover:translate-0 hover:bg-blue-500 hover:shadow-sm"
+                                    disabled={loading}
+                                    onClick={handleSaveBurger}
+                                    className={`cursor-pointer rounded-full px-6 py-2 text-xl font-semibold text-white shadow-xl transition-all duration-150 ease-out select-none ${
+                                        loading
+                                            ? 'cursor-not-allowed bg-gray-400'
+                                            : 'bg-blue-400 hover:-translate-y-1 hover:bg-blue-500 hover:shadow-sm active:translate-0'
+                                    }`}
                                 >
                                     Save
                                 </button>
