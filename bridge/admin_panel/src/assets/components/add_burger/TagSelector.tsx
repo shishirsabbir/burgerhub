@@ -39,7 +39,7 @@ export default function TagSelector({ inputTitle, inputName }: { inputTitle: str
             <label htmlFor={inputName} className="pl-2 font-semibold">
                 Burger {inputTitle}
             </label>
-            <div className="flex w-full flex-wrap items-center justify-start gap-2 rounded-lg border-2 border-gray-400 px-5 py-4 outline-none focus:border-orange-400">
+            <div className="flex w-full flex-wrap items-center justify-start gap-2 rounded-lg border border-gray-400 px-5 py-4 outline-none focus:border-orange-400">
                 {dataList?.length ? (
                     <>
                         {dataList.map((dataItem, i) => {
@@ -54,7 +54,7 @@ export default function TagSelector({ inputTitle, inputName }: { inputTitle: str
                         type="text"
                         name={inputName}
                         id={inputName}
-                        className="max-w-26 border-b-2 px-1 py-0.5 outline-none focus:border-orange-400"
+                        className="max-w-26 border-b px-1 py-0.5 outline-none focus:border-orange-400"
                     />
                 </div>
             </div>

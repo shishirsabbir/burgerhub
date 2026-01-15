@@ -35,7 +35,7 @@ export default function ImageUpload({
     return (
         <div
             onClick={() => imageInputRef.current?.click()}
-            className="cursor-pointer rounded-lg border-2 border-dashed border-orange-300 select-none hover:bg-orange-50"
+            className="cursor-pointer rounded-lg border-2 border-dashed border-orange-300 transition-all select-none hover:bg-orange-50"
         >
             <input
                 type="file"

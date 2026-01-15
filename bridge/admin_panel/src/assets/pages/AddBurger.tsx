@@ -45,7 +45,7 @@ export default function AddBurgers() {
                         {/* burger images & burger basic info */}
                         <div className="flex items-center justify-between gap-6">
                             {/* burger images */}
-                            <div className="flex h-72 w-[50%] flex-col overflow-hidden rounded-2xl bg-white shadow-sm">
+                            <div className="flex h-72 w-[50%] flex-col overflow-hidden rounded-2xl bg-white shadow-lg">
                                 {/* title */}
                                 <div className="bg-linear-to-r from-amber-400 to-amber-200 px-4 py-2.5">
                                     <span className="text-md font-normal">Upload Burger Images</span>
@@ -82,7 +82,7 @@ export default function AddBurgers() {
                                         name="title"
                                         id="title"
                                         placeholder="Enter burger name"
-                                        className="w-full rounded-full border-2 border-gray-400 px-5 py-2 outline-none focus:border-orange-400"
+                                        className="w-full rounded-full border border-gray-400 px-5 py-2 transition-all duration-100 ease-in-out outline-none focus:border-orange-400"
                                     />
                                 </div>
                                 <div className="flex flex-col items-start justify-start gap-1">
@@ -96,7 +96,7 @@ export default function AddBurgers() {
                                         name="price"
                                         id="price"
                                         placeholder="Enter burgeer price eg. 14.99"
-                                        className="w-[60%] rounded-full border-2 border-gray-400 px-5 py-2 outline-none focus:border-orange-400"
+                                        className="bborder w-[60%] [appearance:textfield] rounded-full border border-gray-400 px-5 py-2 transition-all duration-100 ease-in-out outline-none focus:border-orange-400 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                                     />
                                 </div>
                                 <div className="flex flex-col items-start justify-start gap-1">
@@ -106,7 +106,7 @@ export default function AddBurgers() {
                                     <select
                                         name="category"
                                         id="category"
-                                        className="w-[80%] rounded-full border-2 border-gray-400 px-5 py-2.5 outline-none focus:border-orange-400"
+                                        className="category-select w-[80%] cursor-pointer rounded-full border border-gray-400 px-5 py-2.5 transition-all duration-100 ease-in-out outline-none focus:border-orange-400"
                                     >
                                         {/* as this a title design it separately @hugu */}
                                         <option selected value="" className="">
@@ -139,7 +139,7 @@ export default function AddBurgers() {
                                 id="description"
                                 rows={4}
                                 placeholder="Enter your burger description"
-                                className="w-full rounded-2xl border-2 border-gray-400 px-4 py-2.5 outline-none focus:border-orange-400"
+                                className="w-full rounded-2xl border border-gray-400 px-4 py-2.5 transition-all duration-100 ease-in-out outline-none focus:border-orange-400"
                             ></textarea>
                         </div>
 
@@ -157,7 +157,7 @@ export default function AddBurgers() {
                             <div>
                                 <button
                                     type="button"
-                                    className="text cursor-pointer rounded-full bg-red-400 px-6 py-2 text-xl font-semibold text-white shadow-md select-none hover:bg-red-500 hover:shadow-lg"
+                                    className="text -translate-y-1 cursor-pointer rounded-full bg-red-400 px-6 py-2 text-xl font-semibold text-white shadow-xl transition-all duration-200 ease-in-out select-none hover:translate-0 hover:bg-red-500 hover:shadow-sm"
                                 >
                                     Cancel
                                 </button>
@@ -165,7 +165,7 @@ export default function AddBurgers() {
                             <div>
                                 <button
                                     type="button"
-                                    className="text cursor-pointer rounded-full bg-blue-400 px-6 py-2 text-xl font-semibold text-white shadow-md select-none hover:bg-blue-500 hover:shadow-lg"
+                                    className="text -translate-y-1 cursor-pointer rounded-full bg-blue-400 px-6 py-2 text-xl font-semibold text-white shadow-xl transition-all duration-200 ease-in-out select-none hover:translate-0 hover:bg-blue-500 hover:shadow-sm"
                                 >
                                     Save
                                 </button>

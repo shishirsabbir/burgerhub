@@ -35,7 +35,7 @@ export default function CoverUpload({
     return (
         <div
             onClick={() => coverInputRef.current?.click()}
-            className="relative h-full flex-1 cursor-pointer rounded-lg border-2 border-dashed border-orange-300 select-none hover:bg-orange-50"
+            className="relative h-full flex-1 cursor-pointer rounded-lg border-2 border-dashed border-orange-300 transition-all select-none hover:bg-orange-50"
         >
             <input
                 type="file"
