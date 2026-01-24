@@ -36,5 +36,14 @@ app.get("/test", (req, res) => {
     });
 });
 
+// global error handler
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
+    res.status(500).json({
+        status: "error",
+        message: "Internal api error",
+    });
+});
+
 // exports
 export default app;
